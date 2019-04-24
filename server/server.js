@@ -41,6 +41,4 @@ app.post('/student/:id', controller.saveChanges)
 // settings will also retrieve all students and map them, but it will open up an editor
 app.get('/settings')
 
-// app.post('/students-data', students.addStudent)
-// app.post('/students-log', students.addLog)
 

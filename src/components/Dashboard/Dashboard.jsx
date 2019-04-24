@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {requestAllStudents} from '../../ducks/studentsReducer'
 
+import Nav from '../Nav/Nav'
+
 class Dashboard extends Component {
     componentDidMount(){
         this.props.requestAllStudents()
@@ -14,7 +16,11 @@ class Dashboard extends Component {
         console.log(this.props)
         return (
             <div>
-                <h1>Dashboard</h1>
+                <Nav 
+                    pageTitle={'Dashboard'}
+                    buttonAction={() => this.props.history.push('/settings')}
+                    buttonLabel={'Settings'}
+                />
 
                 {students.map((student, i) => 
                     <div key={i}>
@@ -22,7 +28,6 @@ class Dashboard extends Component {
                     </div>
 
                 )}
-                <Link to='/settings'>TO SETTINGS</Link>
             </div>
         )
     }

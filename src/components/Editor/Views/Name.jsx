@@ -41,9 +41,6 @@ export default class Name extends Component{
             })
     return (
         <div>
-            <div>NAME</div>
-
-
             <label>
                 <input
                     placeholder='Student Name'

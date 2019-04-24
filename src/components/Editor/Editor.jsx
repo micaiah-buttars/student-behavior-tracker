@@ -29,10 +29,12 @@ class Editor extends Component {
         }
         return (
             <div>
-                <Nav />
-                <h1>Editor</h1>
-                <h1 onClick={() => this.props.saveChanges(student)}>SAVE</h1>
-                <Link to='/settings'>X</Link>
+                <Nav 
+                    backLink={'/settings'}
+                    pageTitle={student_name}
+                    buttonAction={() => this.props.saveChanges(student)}
+                    buttonLabel='SAVE'/>
+            
                 <br/>
                 <Route 
                     path={`${this.props.match.path}/name`}

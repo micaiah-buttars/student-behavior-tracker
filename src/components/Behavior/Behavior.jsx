@@ -1,17 +1,36 @@
 import React, {Component} from 'react'
 import {Link, Route} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {requestStudent} from '../../ducks/studentReducer'
+
+
 import View from './Views/View'
 import Send from './Views/Send'
+import Nav from '../Nav/Nav'
  
-export default class Behavior extends Component {
+class Behavior extends Component {
+    componentDidMount(){
+        const id = this.props.match.params.id
+        this.props.requestStudent(id)
+    }
 
     
     render(){
         console.log(this.props)
+        const {student_id, student_name, reminder_interval, behaviors} = this.props.student
+        const student = {
+            student_id,
+            student_name,
+            reminder_interval,
+            behaviors
+        }
         return (
             <div>
-                <h1>Behavior</h1>
-                <Link to='/'>TO DASHBOARD</Link>
+                <Nav 
+                    backLink={'/'}
+                    pageTitle={student_name}
+                    />
+                    
                 <br/>
                 <Link to={`${this.props.match.url}/send`}>SEND</Link>
                 <Link to={`${this.props.match.url}/view`}>VIEW</Link>
@@ -25,3 +44,7 @@ export default class Behavior extends Component {
     }
 }
 
+const mapState = (reduxState) => {
+    return reduxState
+}
+export default connect(mapState, {requestStudent})(Behavior)
