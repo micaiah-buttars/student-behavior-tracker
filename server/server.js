@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 // const session = require('express-session')
 const massive = require('massive')
+const controller = require('./controllers/controller')
 
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
@@ -29,8 +30,14 @@ massive(CONNECTION_STRING)
 
 
 app.get('/login')
-app.get('/')
-app.get('/student/:id')
+
+// Dashboard will retrieve all students and map them
+app.get('/students', controller.requestAllStudents)
+
+// student/:id be an endpoint for posting and viewing data on a specific student
+app.get('/student/:id', controller.requestStudent)
+
+// settings will also retrieve all students and map them, but it will open up an editor
 app.get('/settings')
 
 // app.post('/students-data', students.addStudent)

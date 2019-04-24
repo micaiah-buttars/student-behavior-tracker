@@ -1,30 +1,49 @@
 import React, {Component} from 'react'
-import {Link, Route} from 'react-router-dom'
-import Name from './Views/Name'
-import Discouraged from './Views/Discouraged'
-import Replacement from './Views/Replacement'
+import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {requestAllStudents} from '../../ducks/studentsReducer'
  
-export default class Settings extends Component {
+class Settings extends Component {
+    componentDidMount(){
+        this.props.requestAllStudents()
+    }
 
     
     render(){
+        const students = this.props.class.students
         console.log(this.props)
         return (
             <div>
                 <h1>Settings</h1>
+
+                {students.map((student, i) => 
+                    <div key={i}>
+                        <Link to={`/editor/${student.student_id}/name`}>{student.student_name}</Link>
+                    </div>
+
+                )}
+
+
+
+
+
+
+
+
+
+
                 <Link to='/'>TO DASHBOARD</Link>
                 <br/>
-                <Link to={`${this.props.match.path}/name`}>NAME</Link>
-                <Link to={`${this.props.match.path}/discouraged`}>DISCOURAGED</Link>
-                <Link to={`${this.props.match.path}/replacement`}>REPLACEMENT</Link>
-                <br/>
-                <Route component={Name} path={`${this.props.match.path}/name`} />
-                <Route component={Discouraged} path={`${this.props.match.path}/discouraged`} />
-                <Route component={Replacement} path={`${this.props.match.path}/replacement`} />
+
 
 
             </div>
         )
     }
 }
+
+const mapState = (reduxState) => {
+    return reduxState
+}
+export default connect(mapState, {requestAllStudents})(Settings)
 

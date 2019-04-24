@@ -13,11 +13,11 @@ export default class Behavior extends Component {
                 <h1>Behavior</h1>
                 <Link to='/'>TO DASHBOARD</Link>
                 <br/>
-                <Link to={`${this.props.match.path}/view`}>VIEW</Link>
-                <Link to={`${this.props.match.path}/send`}>SEND</Link>
+                <Link to={`${this.props.match.url}/send`}>SEND</Link>
+                <Link to={`${this.props.match.url}/view`}>VIEW</Link>
                 <br/>
-                <Route component={View} path={`${this.props.match.path}/view`} />
                 <Route component={Send} path={`${this.props.match.path}/send`} />
+                <Route component={View} path={`${this.props.match.path}/view`} />
 
 
             </div>

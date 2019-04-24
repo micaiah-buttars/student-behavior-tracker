@@ -6,6 +6,7 @@ import Login from './components/Login/Login'
 import Dashboard from './components/Dashboard/Dashboard'
 import Behavior from './components/Behavior/Behavior'
 import Settings from './components/Settings/Settings'
+import Editor from './components/Editor/Editor'
 
 
 
@@ -17,6 +18,7 @@ function App() {
         <Route component={Dashboard} path='/' exact/>
         <Route component={Behavior} path='/student/:id'/>
         <Route component={Settings} path='/settings'/>
+        <Route component={Editor} path='/editor/:id'/>
       </Switch>
     </HashRouter>
   );
