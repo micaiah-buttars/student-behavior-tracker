@@ -11,7 +11,7 @@ export default class Replacement extends Component{
     }
 
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         const student = this.props.student
         const replacement = student.behaviors
             .filter(behavior => behavior.behavior_type_id === 3)

@@ -16,7 +16,7 @@ class Behavior extends Component {
 
     
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         const {student_id, student_name, reminder_interval, behaviors} = this.props.student
         const student = {
             student_id,
@@ -24,13 +24,14 @@ class Behavior extends Component {
             reminder_interval,
             behaviors
         }
+        console.log(student)
         return (
             <div>
                 <Nav 
                     backLink={'/'}
                     pageTitle={student_name}
                     />
-                    
+
                 <br/>
                 <Link to={`${this.props.match.url}/send`}>SEND</Link>
                 <Link to={`${this.props.match.url}/view`}>VIEW</Link>

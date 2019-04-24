@@ -5,7 +5,7 @@ import './Nav.css'
 export default class Nav extends Component {
 
   render() {
-    console.log('NAV PROPS', this.props)
+    // console.log('NAV PROPS', this.props)
     return (
         <div className='navContainer'>
 

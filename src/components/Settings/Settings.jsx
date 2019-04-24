@@ -13,7 +13,7 @@ class Settings extends Component {
     
     render(){
         const students = this.props.class.students
-        console.log(this.props)
+        // console.log(this.props)
         return (
             <div>
                 <Nav 

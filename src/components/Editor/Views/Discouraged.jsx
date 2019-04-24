@@ -10,7 +10,7 @@ export default class Discouraged extends Component{
     }
 
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         const student = this.props.student
         const discouraged = student.behaviors
             .filter(behavior => behavior.behavior_type_id === 2)

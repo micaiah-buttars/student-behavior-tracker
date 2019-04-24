@@ -16,7 +16,7 @@ export default class Name extends Component{
     }
 
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         const student = this.props.student
         const onTask = student.behaviors
             .filter(behavior => behavior.behavior_type_id === 1)
