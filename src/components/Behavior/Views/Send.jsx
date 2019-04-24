@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
 
 
-export default function Send({match}){
+export default class Send extends Component{
+
+    render(){
     return (
         <div>SEND</div>
 
     )
+    }
 }

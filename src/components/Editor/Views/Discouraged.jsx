@@ -3,6 +3,12 @@ import {Link} from 'react-router-dom'
 
 export default class Discouraged extends Component{
 
+    updateBehavior = (e) => {
+        const {name, value, id} = e.target
+        this.props.updateBehavior({name, value, id})
+
+    }
+
     render(){
         console.log(this.props)
         const student = this.props.student
@@ -17,19 +23,21 @@ export default class Discouraged extends Component{
                         name='behavior_name'
                         value={behavior.behavior_name}
                         placeholder='Behavior Name'
-                        onChange={this.handleChange}
+                        onChange={this.updateBehavior}
                         type='text'
                         />
                         <br/>
-                    <input 
+                    <textarea 
                         className='behaviorDesc'
+                        rows='3'
                         id={behavior.behavior_id}
+                        value={behavior.behavior_desc || ''}
                         name='behavior_desc'
-                        value={behavior.behavior_desc}
                         placeholder='Operational Definition'
-                        onChange={this.handleChange}
+                        onChange={this.updateBehavior}
                         type='text'
-                        />
+                        >
+                        </textarea>
                 </label>
                 </div>
             })

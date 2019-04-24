@@ -6,7 +6,6 @@ import studentsReducer from './ducks/studentsReducer'
 import studentReducer from './ducks/studentReducer'
 import behaviorReducer from './ducks/behaviorReducer'
 
-
 const rootReducer = combineReducers({
     class: studentsReducer,
     student: studentReducer,

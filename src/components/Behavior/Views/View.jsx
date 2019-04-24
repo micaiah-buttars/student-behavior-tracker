@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
 
 
-export default function View({match}){
+export default class View extends Component{
+
+    render(){
     return (
         <div>VIEW</div>
 
     )
+    }
 }

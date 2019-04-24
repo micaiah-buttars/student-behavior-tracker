@@ -5,9 +5,13 @@
 
 }
 .behaviorName{
+    color: #777;
 
 }
 .behaviorDesc{
     width: 100%;
 
+}
+textarea{
+    resize: none
 }

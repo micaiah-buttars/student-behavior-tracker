@@ -14,7 +14,9 @@ const initialState = {
 
 
 const REQUEST_STUDENT = 'REQUEST_STUDENT'
+const UPDATE_BEHAVIOR = 'UPDATE_BEHAVIOR'
 const HANDLE_CHANGE = 'HANDLE_CHANGE'
+const SAVE_CHANGES = 'SAVE_CHANGES'
 
 export const requestStudent = (id) => {
     let data = axios.get(`/student/${id}`).then(res => res.data)
@@ -25,17 +27,36 @@ export const requestStudent = (id) => {
 }
 
 export const handleChange = (obj) => {
+    const {name, value} = obj
+    const state = {
+            [name]: value || ''
+        }
     return {
         type: HANDLE_CHANGE,
+        payload: state
+    } 
+}
+
+export const updateBehavior = (obj) => {
+    return {
+        type: UPDATE_BEHAVIOR,
         payload: obj
     } 
+}
+
+export const saveChanges = (student) => {
+    axios.post(`/student/${student.student_id}`, student)
+    return {
+        type: SAVE_CHANGES,
+        payload: {}
+    }
 }
 
 export default function(state = initialState, action){
     switch(action.type){
         case REQUEST_STUDENT + '_FULFILLED':
                 return {...state, ...action.payload[0]}
-        case HANDLE_CHANGE:
+        case UPDATE_BEHAVIOR:
             const {name, value, id} = action.payload
             const behaviors = [...state.behaviors]
 
@@ -49,6 +70,10 @@ export default function(state = initialState, action){
             behaviors.splice(index, 1, updated)
 
                 return {...state, behaviors: [...behaviors]}
+        case HANDLE_CHANGE:
+            return {...state, ...action.payload}
+        case SAVE_CHANGES + '_FULFILLED':
+            return {...state, ...initialState}
         default:
             return state
     }
