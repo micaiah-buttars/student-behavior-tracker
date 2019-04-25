@@ -36,7 +36,10 @@ app.get('/students', controller.requestAllStudents)
 
 // student/:id be an endpoint for posting and viewing data on a specific student
 app.get('/student/:id', controller.requestStudent)
-app.post('/student/:id', controller.saveChanges)
+app.post('/editor/:id', controller.saveChanges)
+
+app.get('/log/:id', controller.requestLogs)
+app.post('/log/:id', controller.submitLog)
 
 // settings will also retrieve all students and map them, but it will open up an editor
 app.get('/settings')

@@ -49,7 +49,32 @@ module.exports = {
         })
 
         
+    },
+
+    submitLog: async (req, res) => {
+        const db = req.app.get('db')
+        console.log(req.body)
+        const {student_id, behavior_id, behavior_type_id, time, log_comment} = req.body
+
+        let time_id = await db.check_time([time])
+        console.log(time_id[0].time_slot_id)
+
+        const time_slot_id = time_id[0].time_slot_id
+
+        db.submit_log([student_id, behavior_id, behavior_type_id, time_slot_id, log_comment])
+        .then(log => {
+            res.status(200).send(log)
+        })
+
+    },
+
+    requestLogs: async (req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+
+        const logs = await db.request_logs(id)
+
+        res.status(200).send(logs)
+    
     }
-
-
 }
