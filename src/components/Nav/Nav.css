@@ -1,6 +1,7 @@
 .navContainer{
     display: flex;
-    background-color: rgba(103, 170, 249, 1);
+    background-color: #331E36;
+    color: white;
     justify-content: space-between;
     padding: 0 1em;
 }

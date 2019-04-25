@@ -17,51 +17,50 @@ class View extends Component{
         
     }
 
+
+
     render(){
         console.log(this.props)
-        let logs = this.props.logs || ['']
-        // const onTask = [logs].filter(l => l.behavior_type_id === 1)
+        const logs = this.props.logs || ['']
+        let onTask = logs.filter(function(log){
+            return log.behavior_type_id === 1
+        })
+        let discouraged = logs.filter(function(log){
+            return log.behavior_type_id === 2
+        })
+        let replacement = logs.filter(function(log){
+            return log.behavior_type_id === 3
+        })
+        const behaviorData = [discouraged.length, replacement.length, onTask.length]
 
-        console.log(logs)
-        let onTask = 0
-        let discouraged = 0
-        let replacement = 0
-        let noEntry = 0
-        function tally(arr){
-            for(let i = 0; i < arr.length; i++){
-                console.log(arr[i])
-            }
-
-        }
-
-        tally(logs)
-        console.log(onTask)
-
-        
+    
         const data = {
             labels: [
-                'Red',
-                'Green',
-                'Yellow'
+                'Discouraged',
+                'Replacement',
+                'On Task'
             ],
             datasets: [{
-                data: [300, 50, 100],
+                data: behaviorData,
                 backgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56'
+                '#E76B74',
+                '#C3DD3E',
+                '#E2EF70'
                 ],
                 hoverBackgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56'
+                '#E76B74',
+                '#C3DD3E',
+                '#E2EF70'
                 ]
             }]
         };
     return (
         <div>
-        <div>VIEW</div>
-        <Doughnut data={data}/>
+        <Doughnut
+            data={data}
+            height={250}
+            options={{ maintainAspectRatio: false }}
+            />
 
 
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {requestStudent} from '../../ducks/studentReducer'
+import './Behavior.css'
 
 
 import View from './Views/View'
@@ -31,10 +32,15 @@ class Behavior extends Component {
                     backLink={'/'}
                     pageTitle={student_name}
                     />
+                <nav className='sendView'>
+                <Link to={`${this.props.match.url}/send`}>
+                    <div className=''>SEND</div>
+                </Link>
+                <Link to={`${this.props.match.url}/view`}>
+                    <div>VIEW</div>
+                </Link>
+                </nav>
 
-                <br/>
-                <Link to={`${this.props.match.url}/send`}>SEND</Link>
-                <Link to={`${this.props.match.url}/view`}>VIEW</Link>
                 <br/>
                 <Route component={Send} path={`${this.props.match.path}/send`} />
                 <Route component={View} path={`${this.props.match.path}/view`} />

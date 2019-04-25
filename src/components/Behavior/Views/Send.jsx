@@ -69,8 +69,6 @@ class Send extends Component{
         })
     return (
         <div>
-
-            <div>SEND</div>
             <div className='behaviorReportContainer'>
                     <div className='radioButtons'>
                         <label>

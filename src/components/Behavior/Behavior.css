@@ -1,0 +1,6 @@
+.sendView{
+    display: flex;
+    background-color: #3A3042;
+    justify-content: space-around;
+    padding: .5em;
+}

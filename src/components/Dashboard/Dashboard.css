@@ -1,0 +1,16 @@
+.studentCardContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+}
+.studentCard{
+    background-color: #3A3042;
+    width: 80%;
+    height: 3em;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 3px;
+}

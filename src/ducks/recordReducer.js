@@ -2,16 +2,17 @@
 
 import axios from 'axios'
 
-const initialState = [{
-    log_id: 0,
+const initialState = [
+{    log_id: 0,
     student_id: 0,
     behavior_id: 0,
     behavior_type_id: 0,
     time_slot_id: 0,
     log_comment: '',
     log_date: ''
+}
 
-}]
+]
 
 const REQUEST_LOGS = 'REQUEST_LOGS'
 
@@ -39,7 +40,7 @@ export const requestLogs = (id) => {
 export default function(state = initialState, action){
     switch(action.type){
         case REQUEST_LOGS + '_FULFILLED':
-            return {...action.payload}
+            return action.payload
         default:
             return state
     }
