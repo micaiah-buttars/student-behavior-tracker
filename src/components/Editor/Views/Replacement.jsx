@@ -50,7 +50,9 @@ export default class Replacement extends Component{
 
             {replacement}
 
+            <button className='settingsButton'>
             <Link to={`/editor/${this.props.match.params.id}/discouraged`}> Prev</Link>
+            </button>
 
         </div>
 

@@ -16,7 +16,7 @@ export default class Name extends Component{
     }
 
     render(){
-        // console.log(this.props)
+        console.log(this.props.student)
         const student = this.props.student
         const onTask = student.behaviors
             .filter(behavior => behavior.behavior_type_id === 1)
@@ -64,9 +64,30 @@ export default class Name extends Component{
                 </select>
             </label>
 
-            {onTask}
+            {student.student_id ? onTask : 
+            <div className='behaviorInput'>
+            <label> 
+                On Task Behavior
+                    <br/>
+                <textarea 
+                    className='behaviorDesc'
+                    rows='3'
+                    id={0}
+                    value={''}
+                    name='behavior_desc'
+                    placeholder='Operational Definition'
+                    onChange={this.updateBehavior}
+                    type='text'
+                    >
+                    </textarea>
+            </label>
+            </div>}
 
+            <button className='settingsButton'>
             <Link to={`/editor/${this.props.match.params.id}/discouraged`}> Next</Link>
+            </button>
+
+
 
         </div>
 

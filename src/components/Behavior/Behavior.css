@@ -4,3 +4,27 @@
     justify-content: space-around;
     padding: .5em;
 }
+.doughnutContainer{
+    display: flex;
+    width: 100%
+}
+.dailyBarcode{
+    display: flex;
+    width: 100%
+}
+.barcodeOnTask, .barcodeDiscouraged, .barcodeReplacement, .barcodeNoEntry{
+    color: transparent;
+    background-color: #E2EF70
+    
+}
+.barcodeDiscouraged{
+    background-color: #E76B74
+    
+}
+.barcodeReplacement{
+    background-color: #C3DD3E
+
+}
+.barcodeNoEntry{
+    background-color: #EEE;
+}

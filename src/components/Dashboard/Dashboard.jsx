@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {requestAllStudents} from '../../ducks/studentsReducer'
+import {desync} from '../../ducks/studentReducer'
 import './Dashboard.css'
 
 import Nav from '../Nav/Nav'
@@ -9,12 +10,13 @@ import Nav from '../Nav/Nav'
 class Dashboard extends Component {
     componentDidMount(){
         this.props.requestAllStudents()
+        this.props.desync()
     }
 
 
     render(){
         const students = this.props.class.students
-        // console.log(this.props)
+        console.log(this.props)
         return (
             <div>
                 <Nav 
@@ -43,4 +45,4 @@ class Dashboard extends Component {
 const mapState = (reduxState) => {
     return reduxState
 }
-export default connect(mapState, {requestAllStudents})(Dashboard)
+export default connect(mapState, {requestAllStudents, desync})(Dashboard)

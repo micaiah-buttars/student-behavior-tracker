@@ -16,25 +16,15 @@ const initialState = [
 
 const REQUEST_LOGS = 'REQUEST_LOGS'
 
-export const requestLogs = (id) => {
-    let data = axios.get(`/log/${id}`).then(res => res.data)
+export const requestLogs = (params) => {
+    const {id, date} = params
+    console.log('PARAMS', params)
+    let data = axios.get(`/log/${id}/view/${date}`).then(res => res.data)
         return {
             type: REQUEST_LOGS,
             payload: data
         }
 }
-
-
-// export const handleLogChange = (obj) => {
-//     const {name, value} = obj
-//     const log = {
-//             [name]: value || ''
-//         }
-//     return {
-//         type: HANDLE_LOG_CHANGE,
-//         payload: log
-//     } 
-// }
 
 
 export default function(state = initialState, action){

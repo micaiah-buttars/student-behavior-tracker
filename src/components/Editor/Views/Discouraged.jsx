@@ -47,8 +47,12 @@ export default class Discouraged extends Component{
 
             {discouraged}
 
+            <button className='settingsButton'>
             <Link to={`/editor/${this.props.match.params.id}/name`}> Prev</Link>
+            </button>
+            <button className='settingsButton'>
             <Link to={`/editor/${this.props.match.params.id}/replacement`}> Next</Link>
+            </button>
 
         </div>
 

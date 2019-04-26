@@ -40,17 +40,12 @@ class Send extends Component{
             time,
             log_comment
         })
+        this.props.history.push('/')
     }
 
     render(){
         console.log(this.props)
-        const {student_id, student_name, reminder_interval, behaviors} = this.props.student
-        const student = {
-            student_id,
-            student_name,
-            reminder_interval,
-            behaviors
-        }
+        const {behaviors} = this.props.student
         const discouraged = (behaviors || [''])
         .filter(behavior => behavior.behavior_type_id === 2)
         .map((behavior, i) => {

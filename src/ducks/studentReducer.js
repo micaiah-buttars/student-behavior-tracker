@@ -17,6 +17,7 @@ const REQUEST_STUDENT = 'REQUEST_STUDENT'
 const UPDATE_BEHAVIOR = 'UPDATE_BEHAVIOR'
 const HANDLE_CHANGE = 'HANDLE_CHANGE'
 const SAVE_CHANGES = 'SAVE_CHANGES'
+const DESYNC = 'DESYNC'
 
 export const requestStudent = (id) => {
     let data = axios.get(`/student/${id}`).then(res => res.data)
@@ -52,6 +53,13 @@ export const saveChanges = (student) => {
     }
 }
 
+export const desync = () => {
+    return {
+        type: DESYNC,
+        payload: {}
+    }
+}
+
 export default function(state = initialState, action){
     switch(action.type){
         case REQUEST_STUDENT + '_FULFILLED':
@@ -74,6 +82,8 @@ export default function(state = initialState, action){
             return {...state, ...action.payload}
         case SAVE_CHANGES + '_FULFILLED':
             return {...state, ...initialState}
+        case DESYNC:
+            return {...initialState}
         default:
             return state
     }

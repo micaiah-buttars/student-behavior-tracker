@@ -38,7 +38,7 @@ app.get('/students', controller.requestAllStudents)
 app.get('/student/:id', controller.requestStudent)
 app.post('/editor/:id', controller.saveChanges)
 
-app.get('/log/:id', controller.requestLogs)
+app.get('/log/:id/view/:date', controller.requestLogs)
 app.post('/log/:id', controller.submitLog)
 
 // settings will also retrieve all students and map them, but it will open up an editor
