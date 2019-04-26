@@ -117,7 +117,7 @@ class View extends Component{
                         >'</div>
             }   
         })
-        
+
         return (
         <div>
             <h4>{`${this.state.date.format('LL')}`}</h4>

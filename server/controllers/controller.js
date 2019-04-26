@@ -40,23 +40,13 @@ module.exports = {
         const db = req.app.get('db')
         const {student_id, student_name, reminder_interval, behaviors} = req.body
 
-        if(!student_id){
-            let id = await db.add_student([student_name, reminder_interval])
+        db.update_student([student_name, reminder_interval, student_id])
 
-            behaviors.forEach(function(behavior){
-                const {behavior_name, behavior_desc} = behavior
-    
-                db.add_behavior([behavior_name, behavior_desc])
-            })
-        } else {
-            db.update_student([student_name, reminder_interval, student_id])
-    
-            behaviors.forEach(function(behavior){
-                const {behavior_name, behavior_desc, behavior_id} = behavior
-    
-                db.update_behavior([behavior_name, behavior_desc, behavior_id])
-            })
-        }  
+        behaviors.forEach(function(behavior){
+            const {behavior_name, behavior_desc, behavior_id} = behavior
+
+            db.update_behavior([behavior_name, behavior_desc, behavior_id])
+        })
     },
 
     submitLog: async (req, res) => {
@@ -79,6 +69,7 @@ module.exports = {
     requestLogs: async (req, res) => {
         const db = req.app.get('db')
         const {id, date} = req.params
+        console.log('PARAMS', req.params)
 
         let dbDate = `${date}T06:00:00.000Z`
 
@@ -86,5 +77,16 @@ module.exports = {
 
         res.status(200).send(logs)
     
+    },
+    addStudent: async (req, res) => {
+        const {student_id, behavior_id, behavior_type_id, time, log_comment} = req.body
+            let id = await db.add_student([student_name, reminder_interval])
+
+            behaviors.forEach(function(behavior){
+                const {behavior_name, behavior_desc} = behavior
+    
+                db.add_behavior([behavior_name, behavior_desc])
+            })
+
     }
 }

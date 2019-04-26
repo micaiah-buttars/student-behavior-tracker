@@ -2,6 +2,12 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 
 export default class Discouraged extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            behaviors: ['', '', '', '']
+        }
+    }
 
     updateBehavior = (e) => {
         const {name, value, id} = e.target
@@ -10,18 +16,18 @@ export default class Discouraged extends Component{
     }
 
     render(){
-        // console.log(this.props)
         const student = this.props.student
-        const discouraged = student.behaviors
-            .filter(behavior => behavior.behavior_type_id === 2)
+
+        const discouraged = (this.props.student.student_id ? (student.behaviors
+            .filter(behavior => behavior.behavior_type_id === 2)) : (this.state.behaviors))
             .map((behavior, i) => {
                 return <div key={i} className='behaviorInput'>
                 <label>  
                     <input 
                         className='behaviorName'
-                        id={behavior.behavior_id}
+                        id={behavior.behavior_id || ''}
                         name='behavior_name'
-                        value={behavior.behavior_name}
+                        value={behavior.behavior_name || ''}
                         placeholder='Behavior Name'
                         onChange={this.updateBehavior}
                         type='text'
@@ -41,6 +47,8 @@ export default class Discouraged extends Component{
                 </label>
                 </div>
             })
+
+            console.log(discouraged)
     return (
         <div>
             <div>DISCOURAGED</div>

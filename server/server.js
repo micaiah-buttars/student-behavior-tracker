@@ -36,7 +36,8 @@ app.get('/students', controller.requestAllStudents)
 
 // student/:id be an endpoint for posting and viewing data on a specific student
 app.get('/student/:id', controller.requestStudent)
-app.post('/editor/:id', controller.saveChanges)
+app.put('/editor/:id', controller.saveChanges)
+app.post('/editor/0', controller.addStudent)
 
 app.get('/log/:id/view/:date', controller.requestLogs)
 app.post('/log/:id', controller.submitLog)

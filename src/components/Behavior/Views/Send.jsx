@@ -43,6 +43,9 @@ class Send extends Component{
         this.props.history.push('/')
     }
 
+    
+
+
     render(){
         console.log(this.props)
         const {behaviors} = this.props.student
@@ -62,6 +65,9 @@ class Send extends Component{
                 value={behavior.behavior_id}
                 onChange={this.handleLogChange}>{behavior.behavior_name}</option>
         })
+
+
+
     return (
         <div>
             <div className='behaviorReportContainer'>
@@ -92,14 +98,14 @@ class Send extends Component{
                         <select
                             name='behavior_id'
                             onChange={this.handleLogChange}>
-                            <option value='0'>- Select Behavior -</option>
+                            <option value='0' selected disabled hidden>- Select Behavior -</option>
                             {discouraged}
                         </select>
                         ) : this.state.selectedOption === '3' ? (
                         <select
                             name='behavior_id'
                             onChange={this.handleLogChange}>
-                            <option value='0'>- Select Behavior -</option>
+                            <option value='0' selected disabled hidden>- Select Behavior -</option>
                             {replacement}
                         </select>
                         ) : <div></div>}
@@ -118,7 +124,7 @@ class Send extends Component{
                 className='hourSelect'
                 name='hour'
                 onChange={this.handleLogChange}>
-                <option>-- Hour --</option>
+                <option value='' selected disabled hidden>-- Hour --</option>
                 <option>9</option>
                 <option>10</option>
                 <option>11</option>
@@ -132,7 +138,7 @@ class Send extends Component{
                 className='minutesSelect'
                 name='minutes'
                 onChange={this.handleLogChange}>
-                <option>-- Minutes --</option>
+                <option value='' selected disabled hidden>-- Minutes --</option>
                 <option>00</option>
                 <option>05</option>
                 <option>10</option>

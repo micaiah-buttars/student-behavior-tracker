@@ -46,7 +46,7 @@ export const updateBehavior = (obj) => {
 }
 
 export const saveChanges = (student) => {
-    axios.post(`/editor/${student.student_id}`, student)
+    axios.put(`/editor/${student.student_id}`, student)
     return {
         type: SAVE_CHANGES,
         payload: {}
