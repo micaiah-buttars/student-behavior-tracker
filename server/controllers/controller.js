@@ -51,11 +51,9 @@ module.exports = {
 
     submitLog: async (req, res) => {
         const db = req.app.get('db')
-        console.log(req.body)
         const {student_id, behavior_id, behavior_type_id, time, log_comment} = req.body
 
         let time_id = await db.check_time([time])
-        console.log(time_id[0].time_slot_id)
 
         const time_slot_id = time_id[0].time_slot_id
 
@@ -69,7 +67,6 @@ module.exports = {
     requestLogs: async (req, res) => {
         const db = req.app.get('db')
         const {id, date} = req.params
-        console.log('PARAMS', req.params)
 
         let dbDate = `${date}T06:00:00.000Z`
 
@@ -79,13 +76,14 @@ module.exports = {
     
     },
     addStudent: async (req, res) => {
-        const {student_id, behavior_id, behavior_type_id, time, log_comment} = req.body
-            let id = await db.add_student([student_name, reminder_interval])
+        const db = req.app.get('db')
+        const {student_name, reminder_interval, behaviors} = req.body
+            let id = await db.add_student([student_name, +reminder_interval])
 
             behaviors.forEach(function(behavior){
-                const {behavior_name, behavior_desc} = behavior
+                const {behavior_name, behavior_desc, behavior_type_id} = behavior
     
-                db.add_behavior([behavior_name, behavior_desc])
+                db.add_behavior([behavior_name, behavior_desc, id[0].student_id, behavior_type_id])
             })
 
     }

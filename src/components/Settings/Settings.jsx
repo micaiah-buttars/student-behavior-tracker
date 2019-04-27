@@ -38,7 +38,7 @@ class Settings extends Component {
 
                 <br/>
                 <button>
-                    <Link to={`/editor/0/name`}>Add Student</Link>
+                    <Link to={`/student/new`}>Add Student</Link>
                 </button>
 
 

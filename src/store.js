@@ -6,12 +6,14 @@ import studentsReducer from './ducks/studentsReducer'
 import studentReducer from './ducks/studentReducer'
 import behaviorReducer from './ducks/behaviorReducer'
 import recordReducer from './ducks/recordReducer'
+import newStudentReducer from './ducks/newStudentReducer'
 
 const rootReducer = combineReducers({
     class: studentsReducer,
     student: studentReducer,
     behavior: behaviorReducer,
-    logs: recordReducer
+    logs: recordReducer,
+    newStudent: newStudentReducer
 
 
 })

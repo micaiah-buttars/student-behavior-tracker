@@ -4,5 +4,6 @@ insert into student (
 ) values (
     $1,
     $2
+
 )
 returning student_id
