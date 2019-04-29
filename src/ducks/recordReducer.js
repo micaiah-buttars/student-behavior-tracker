@@ -15,6 +15,7 @@ const initialState = [
 ]
 
 const REQUEST_LOGS = 'REQUEST_LOGS'
+const HANDLE_LOG_UPDATE = 'HANDLE_LOG_UPDATE'
 
 export const requestLogs = (params) => {
     const {id, date} = params
@@ -25,12 +26,32 @@ export const requestLogs = (params) => {
             payload: data
         }
 }
+export const handleLogUpdate = (obj) => {
+    return {
+        type: HANDLE_LOG_UPDATE,
+        payload: obj
+    } 
+}
 
 
 export default function(state = initialState, action){
     switch(action.type){
         case REQUEST_LOGS + '_FULFILLED':
             return action.payload
+        case HANDLE_LOG_UPDATE:
+        const {name, value, log_id} = action.payload
+        const logs = [...state]
+
+        const found = state.find(log => log.log_id === + log_id)
+        const index = state.findIndex(log => log.log_id === + log_id)
+
+        const updated = {
+                ...found,
+                [name]: value || ''
+            }
+        logs.splice(index, 1, updated)
+
+            return {...state, ...logs}
         default:
             return state
     }

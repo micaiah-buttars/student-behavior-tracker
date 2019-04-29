@@ -27,12 +27,15 @@ class Dashboard extends Component {
                 <div className='studentCardContainer'>
 
                 {students.map((student, i) => 
+                <div className='studentCard'>
                     <div
                         key={i}
-                        className='studentCard'
+                        className='studentName'
                         >
                         <Link to={`/student/${student.student_id}/send`}>{student.student_name}</Link>
                     </div>
+                </div>
+
 
                 )}
                 </div>

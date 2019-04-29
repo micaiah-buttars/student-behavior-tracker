@@ -52,7 +52,7 @@ class New extends Component{
                 </div>
             })
 
-            const discouraged = newStudent.behaviors
+            const target = newStudent.behaviors
                 .filter(behavior => behavior.behavior_type_id === 2)
                 .map((behavior, i) => {
                     return <div key={i} className='behaviorInput'>
@@ -62,7 +62,7 @@ class New extends Component{
                             id={behavior.temp_id}
                             name='behavior_name'
                             value={behavior.behavior_name || ''}
-                            placeholder='Discouraged Behavior Name'
+                            placeholder='Target Behavior Name'
                             onChange={this.updateBehavior}
                             type='text'
                             />
@@ -142,7 +142,7 @@ class New extends Component{
 
             {onTask}
 
-            {discouraged}
+            {target}
 
             {replacement}
 

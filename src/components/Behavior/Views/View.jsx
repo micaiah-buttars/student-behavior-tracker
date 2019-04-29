@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {requestStudent} from '../../../ducks/studentReducer'
 import {requestLogs} from '../../../ducks/recordReducer'
 import {Doughnut} from 'react-chartjs-2'
+import LogEdit from './LogEdit'
+
 const moment = require('moment');
 
 
@@ -10,7 +12,8 @@ class View extends Component{
     constructor(props){
         super(props)
         this.state = {
-            date: moment()
+            date: moment(),
+            editing: false
 
         }
     }
@@ -43,33 +46,60 @@ class View extends Component{
         const date = this.state.date.format().slice(0, 10)
         this.props.requestLogs({id, date})
     }
+    updateBehavior = (e) => {
+        const {name, value, id} = e.target
+        this.props.updateBehavior({name, value, id})
+
+    }
 
 
 
     render(){
-        console.log(this.props)
         const date = this.state.date.format().slice(0, 10)
         console.log('DATE', date)
         
-        const logs = this.props.logs || ['']
+        let logs = [...this.props.logs]
         let onTask = logs.filter(function(log){
             return log.behavior_type_id === 1
         })
-        let discouraged = logs.filter(function(log){
+        let target = logs.filter(function(log){
             return log.behavior_type_id === 2
         })
         let replacement = logs.filter(function(log){
             return log.behavior_type_id === 3
         })
-        let noEntry = logs.filter(function(log){
-            return log.behavior_type_id === null
-        })
-        const behaviorData = [discouraged.length, replacement.length, onTask.length, noEntry.length]
+        let noEntry = []
+        
+        let noEntryGenerator = () => {
+            for (let i = 0; i < 76; i++){
+                if(!(logs.find(log => {
+                    return log.time_slot_id === (i + 1)
+                }))){
+                    logs.push({
+                        student_id: this.props.match.params.id,
+                        behavior_id: null,
+                        behavior_type_id: null,
+                        time_slot_id: (i + 1),
+                        log_comment: null
+                    })
+                    noEntry.push('')
+
+
+                }
+            }
+        }
+
+        noEntryGenerator(logs)
+
+
+        
+
+        const behaviorData = [target.length, replacement.length, onTask.length, noEntry.length]
 
     
         const data = {
             labels: [
-                'Discouraged',
+                'Target',
                 'Replacement',
                 'On Task',
                 'No Entry'
@@ -102,7 +132,7 @@ class View extends Component{
                         >'</div>
                 case 2:
                     return <div
-                        className='barcodeDiscouraged'
+                        className='barcodeTarget'
                         key={i}
                         >'</div>
                 case 3:
@@ -128,11 +158,15 @@ class View extends Component{
             <button onClick={this.previousDay}>PREVIOUS DAY</button>
             <button onClick={this.nextDay}>NEXT DAY</button>
 
+            {!this.state.editing ? 
             <div className='doughnutContainer'>
             <Doughnut
             data={data}
             />
-            </div>
+            </div> : 
+            <LogEdit date={date} records={logs}/>
+        }
+        
 
 
 

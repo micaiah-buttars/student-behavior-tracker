@@ -49,7 +49,7 @@ class Send extends Component{
     render(){
         console.log(this.props)
         const {behaviors} = this.props.student
-        const discouraged = (behaviors || [''])
+        const target = (behaviors || [''])
         .filter(behavior => behavior.behavior_type_id === 2)
         .map((behavior, i) => {
             return <option
@@ -76,7 +76,7 @@ class Send extends Component{
                             <input type='radio' name='behavior_type_id' value='2'
                             checked={this.state.selectedOption === '2'}
                             onChange={this.handleOptionChange}/>
-                            <span>Discouraged</span>
+                            <span>Target</span>
                         </label>
 
                         <label>
@@ -99,7 +99,7 @@ class Send extends Component{
                             name='behavior_id'
                             onChange={this.handleLogChange}>
                             <option value='0' selected disabled hidden>- Select Behavior -</option>
-                            {discouraged}
+                            {target}
                         </select>
                         ) : this.state.selectedOption === '3' ? (
                         <select

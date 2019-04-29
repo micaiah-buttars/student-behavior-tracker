@@ -7,10 +7,31 @@
 
 }
 .studentCard{
-    background-color: #3A3042;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 80%;
+
+}
+.studentName{
+    /* display: flex; */
+    background-color: #3A3042;
+    color: white;
     height: 3em;
     padding: 1em;
     margin: 1em;
     border-radius: 3px;
+    width: 100%
+    
+
+}
+.editIcon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(103, 170, 249, 1);
+    height: 3em;
+    width: 3em;
+    padding: .5em;
+    border-radius: 10em;
 }

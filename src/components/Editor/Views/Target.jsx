@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 
-export default class Discouraged extends Component{
+export default class Target extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -18,7 +18,7 @@ export default class Discouraged extends Component{
     render(){
         const student = this.props.student
 
-        const discouraged = (this.props.student.student_id ? (student.behaviors
+        const target = (this.props.student.student_id ? (student.behaviors
             .filter(behavior => behavior.behavior_type_id === 2)) : (this.state.behaviors))
             .map((behavior, i) => {
                 return <div key={i} className='behaviorInput'>
@@ -48,12 +48,12 @@ export default class Discouraged extends Component{
                 </div>
             })
 
-            console.log(discouraged)
+            console.log(target)
     return (
         <div>
             <div>DISCOURAGED</div>
 
-            {discouraged}
+            {target}
 
             <button className='settingsButton'>
             <Link to={`/editor/${this.props.match.params.id}/name`}> Prev</Link>

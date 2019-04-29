@@ -7,7 +7,7 @@ import Nav from '../Nav/Nav'
 import './Editor.css'
 
 import Name from './Views/Name'
-import Discouraged from './Views/Discouraged'
+import Target from './Views/Target'
 import Replacement from './Views/Replacement'
 
 
@@ -45,8 +45,8 @@ class Editor extends Component {
                     />}
                 />
                 <Route 
-                    path={`${this.props.match.path}/discouraged`}
-                    render={(props) => <Discouraged {...props} student={student}
+                    path={`${this.props.match.path}/target`}
+                    render={(props) => <Target {...props} student={student}
                     updateBehavior={this.props.updateBehavior}
                     />}
                 />

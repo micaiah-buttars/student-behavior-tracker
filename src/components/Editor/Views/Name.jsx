@@ -84,7 +84,7 @@ export default class Name extends Component{
             </div>}
 
             <button className='settingsButton'>
-            <Link to={`/editor/${this.props.match.params.id}/discouraged`}> Next</Link>
+            <Link to={`/editor/${this.props.match.params.id}/target`}> Next</Link>
             </button>
 
 

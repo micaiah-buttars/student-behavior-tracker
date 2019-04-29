@@ -5,6 +5,7 @@ import {requestAllStudents} from '../../ducks/studentsReducer'
 import {desync} from '../../ducks/studentReducer'
 
 import Nav from '../Nav/Nav'
+import Icon from '../Icon/Icon'
  
 class Settings extends Component {
     componentDidMount(){
@@ -27,11 +28,23 @@ class Settings extends Component {
                 <div className='studentCardContainer'>
 
                 {students.map((student, i) => 
-                    <div 
-                        key={i}
-                        className='studentCard'>
-                        <Link to={`/editor/${student.student_id}/name`}>{student.student_name}</Link>
+                <div
+                    key={i} 
+                    className='studentCard'>
+                    <span className='studentName'>
+                        {student.student_name}  
+                    </span>
+                    <Link to={`/editor/${student.student_id}/name`}>
+                    <div className='editIcon'>
+                        <Icon name='edit' fill="#FFF"/>
                     </div>
+
+
+                    </Link>
+                    
+
+                </div>
+
 
                 )}
                 </div>

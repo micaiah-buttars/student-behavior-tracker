@@ -10,14 +10,16 @@
 }
 .dailyBarcode{
     display: flex;
+    /* justify-content: space-evenly; */
     width: 100%
 }
-.barcodeOnTask, .barcodeDiscouraged, .barcodeReplacement, .barcodeNoEntry{
+.barcodeOnTask, .barcodeTarget, .barcodeReplacement, .barcodeNoEntry{
     color: transparent;
-    background-color: #E2EF70
+    background-color: #E2EF70;
+    width: calc(100% / 76);
     
 }
-.barcodeDiscouraged{
+.barcodeTarget{
     background-color: #E76B74
     
 }
