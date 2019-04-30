@@ -17,6 +17,7 @@
     color: transparent;
     background-color: #E2EF70;
     width: calc(100% / 76);
+    border-left: 1px solid white;
     
 }
 .barcodeTarget{

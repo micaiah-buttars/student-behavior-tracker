@@ -87,4 +87,10 @@ module.exports = {
             })
 
     }
+    // requestTimes: async(req, res) => {
+    //     const db = req.app.get('db')
+    //     const times = await db.request_times()
+
+    //     res.status(200).send(times)
+    // }
 }
