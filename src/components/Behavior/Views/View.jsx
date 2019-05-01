@@ -15,7 +15,7 @@ class View extends Component{
         this.state = {
             date: moment(),
             editing: false,
-            selectedHour: '9'
+            selectedHour: '10'
 
         }
     }
@@ -55,7 +55,7 @@ class View extends Component{
     }
     handleOptionChange = (e) => {
         const {value} = e.target
-        console.log(value)
+        console.log('hit')
         this.setState({
             selectedHour: value
         })
@@ -223,7 +223,7 @@ class View extends Component{
             return <div key={i}>
                 <span>{log.time_slot_id}</span>
                 <select>
-                    <option>--Select--</option>
+                    <option default hidden>--Select--</option>
                     {this.props.student.behaviors.map((behavior, i) => {
                         if(behavior.behavior_id === log.behavior_id){
                             return <option key={i}
@@ -243,29 +243,57 @@ class View extends Component{
         })
 
         const radioButtons = 
-        <div>
+        <div className='radioButtons'>
+
+            <label>
             <input type='radio' value='9'
             checked={this.state.selectedHour === '9'}
             onChange={this.handleOptionChange}/>
+            <span>9 AM</span>
+            </label>
+
+            <label>
             <input type='radio' value='10'
             checked={this.state.selectedHour === '10'}
             onChange={this.handleOptionChange}/>
+            <span>10 AM</span>
+            </label>
+
+            <label>
             <input type='radio' value='11'
             checked={this.state.selectedHour === '11'}
             onChange={this.handleOptionChange}/>
+            <span>11 AM</span>
+            </label>
+
+            <label>
             <input type='radio' value='12'
             checked={this.state.selectedHour === '12'}
             onChange={this.handleOptionChange}/>
+            <span>12 PM</span>
+            </label>
+            
+            <label>
             <input type='radio' value='1'
             checked={this.state.selectedHour === '1'}
             onChange={this.handleOptionChange}/>
+            <span>1 PM</span>
+            </label>
+
+
+            <label>
             <input type='radio' value='2'
             checked={this.state.selectedHour === '2'}
             onChange={this.handleOptionChange}/>
+            <span>2 PM</span>
+            </label>
+
+            <label>
             <input type='radio' value='3'
             checked={this.state.selectedHour === '3'}
             onChange={this.handleOptionChange}/>
-
+            <span>3 PM</span>
+            </label>
         </div>
 
 
@@ -281,7 +309,7 @@ class View extends Component{
             </div>
 
 
-            <button onChange={this.toggleEdit}>Edit</button>
+            <button onClick={this.toggleEdit}>Edit</button>
 
             {!this.state.editing
                 ? <div>

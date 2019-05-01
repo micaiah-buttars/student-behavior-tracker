@@ -10,7 +10,7 @@ export default class Nav extends Component {
         <div className='navContainer'>
 
 
-        {this.props.backLink ? <Link to={this.props.backLink}>{'<'}</Link>
+        {this.props.backLink ? <Link className='back' to={this.props.backLink}>{'<'}</Link>
         : <div></div>}
 
         <h3>{this.props.pageTitle}</h3>
