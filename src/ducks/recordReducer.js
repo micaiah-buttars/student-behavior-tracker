@@ -14,6 +14,7 @@ const initialState = [
 
 ]
 
+
 const REQUEST_LOGS = 'REQUEST_LOGS'
 const HANDLE_LOG_UPDATE = 'HANDLE_LOG_UPDATE'
 

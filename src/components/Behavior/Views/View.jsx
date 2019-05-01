@@ -14,7 +14,7 @@ class View extends Component{
         super(props)
         this.state = {
             date: moment(),
-            editing: true,
+            editing: false,
             selectedHour: '9'
 
         }
@@ -60,12 +60,17 @@ class View extends Component{
             selectedHour: value
         })
     }
+    toggleEdit = () => {
+        this.setState({
+            editing: !this.state.editing
+        })
+    }
 
 
 
     render(){
         const date = this.state.date.format().slice(0, 10)
-        console.log('DATE', date)
+        console.log(this.props)
         
         let logs = [...this.props.logs]
 
@@ -139,7 +144,7 @@ class View extends Component{
             labels: ['9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM'],
             datasets: [
                 {
-                    label: 'Net Behavior per Hour',
+                    label: 'Avg. Behavior per Hour',
                     fill: false,
                     lineTension: 0.1,
                     backgroundColor: 'rgba(75,192,192,0.4)',
@@ -230,7 +235,7 @@ class View extends Component{
                         }
                     })}  
                 </select>
-                <input value={log.log_comment}/>
+                <input />
 
 
 
@@ -269,20 +274,20 @@ class View extends Component{
 
         return (
         <div>
-            <div>
+            <div className='dateContainer'>
             <button onClick={this.previousDay}>PREVIOUS DAY</button>
             <h4>{`${this.state.date.format('LL')}`}</h4>
             <button onClick={this.nextDay}>NEXT DAY</button>
             </div>
 
 
-            {/* <div className='dailyBarcode'>
-                {dailyBarcode}
-            </div> */}
+            <button onChange={this.toggleEdit}>Edit</button>
 
             {!this.state.editing
                 ? <div>
                 <Line data={lineData}/>
+                    <br/>
+                    <br/>
                 <Doughnut data={doughnutData}/>
                 </div>
                 : <div>

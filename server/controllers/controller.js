@@ -86,11 +86,11 @@ module.exports = {
                 db.add_behavior([behavior_name, behavior_desc, id[0].student_id, behavior_type_id])
             })
 
-    }
-    // requestTimes: async(req, res) => {
-    //     const db = req.app.get('db')
-    //     const times = await db.request_times()
+    },
+    requestTimes: async(req, res) => {
+        const db = req.app.get('db')
+        const times = await db.request_times()
 
-    //     res.status(200).send(times)
-    // }
+        res.status(200).send(times)
+    }
 }

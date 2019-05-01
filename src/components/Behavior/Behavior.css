@@ -6,28 +6,76 @@
 }
 .doughnutContainer{
     display: flex;
-    width: 100%
+    width: 100%;
+    margin-top: 2em
 }
-.dailyBarcode{
+.behaviorReportContainer{
     display: flex;
-    /* justify-content: space-evenly; */
-    width: 100%
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    background-color: #DDD;
+    height: 55vh;
+    flex-direction: column;
+    border-radius: .3em
 }
-.barcodeOnTask, .barcodeTarget, .barcodeReplacement, .barcodeNoEntry{
-    color: transparent;
-    background-color: #E2EF70;
-    width: calc(100% / 76);
-    border-left: 1px solid white;
-    
-}
-.barcodeTarget{
-    background-color: #E76B74
-    
-}
-.barcodeReplacement{
-    background-color: #C3DD3E
+.radioButtons{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    overflow: hidden;
+    margin-bottom: 2em;
+
+
 
 }
-.barcodeNoEntry{
-    background-color: #EEE;
+.radioOptionT, .radioOptionO, .radioOptionR{
+    width: calc(100% / 3);
+    padding: 2em .5em;
+    text-align: center;
+    color: #333;
 }
+.radioOptionT{
+    background-color: #E76B74
+}
+.radioOptionO{
+    background-color: #E2EF70;
+}
+.radioOptionR{
+    background-color: #C3DD3E
+}
+.hourSelect, .minutesSelect{
+    width: fit-content;
+}
+.commentContainer{
+    width: 100%;
+    justify-content: center;
+}
+.commentBox{
+    margin: 0 auto;
+    width: 80%;
+    
+}
+[type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  [type=radio] + span {
+    cursor: pointer;
+  }
+  [type=radio]:checked + span {
+    background: 
+    linear-gradient(
+        rgba(0, 0, 0, 0.2), 
+        rgba(0, 0, 0, 0.2)
+      );
+      color: #FFF
+  }
+
+  .dateContainer{
+      display: flex;
+      width: 100%;
+      justify-content: space-around
+  }

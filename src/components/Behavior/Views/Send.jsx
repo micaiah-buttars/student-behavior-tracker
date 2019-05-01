@@ -72,21 +72,21 @@ class Send extends Component{
         <div>
             <div className='behaviorReportContainer'>
                     <div className='radioButtons'>
-                        <label>
+                        <label className='radioOptionT'>
                             <input type='radio' name='behavior_type_id' value='2'
                             checked={this.state.selectedOption === '2'}
                             onChange={this.handleOptionChange}/>
                             <span>Target</span>
                         </label>
 
-                        <label>
+                        <label className='radioOptionO'>
                             <input type='radio' name='behavior_type_id' value='1'
                             checked={this.state.selectedOption === '1'}
                             onChange={this.handleOptionChange}/>
                             <span>On Task</span>
                         </label>
 
-                        <label>
+                        <label className='radioOptionR'>
                             <input type='radio' name='behavior_type_id' value='3'
                             checked={this.state.selectedOption === '3'}
                             onChange={this.handleOptionChange}/>
@@ -111,20 +111,20 @@ class Send extends Component{
                         ) : <div></div>}
 
                         <div className='commentContainer'>
-                            <input
+                            <textarea
                                 className='commentBox'
                                 type='text'
                                 placeholder='comments'
                                 name='log_comment'
                                 value={this.props.behavior.log_comment}
                                 onChange={this.handleLogChange}
-                                />
-
-            <select
+                                ></textarea>
+                        <div>
+                <select
                 className='hourSelect'
                 name='hour'
                 onChange={this.handleLogChange}>
-                <option value='' selected disabled hidden>-- Hour --</option>
+                <option value='' selected disabled hidden>-Hour-</option>
                 <option>9</option>
                 <option>10</option>
                 <option>11</option>
@@ -138,7 +138,7 @@ class Send extends Component{
                 className='minutesSelect'
                 name='minutes'
                 onChange={this.handleLogChange}>
-                <option value='' selected disabled hidden>-- Minutes --</option>
+                <option value='' selected disabled hidden>-Minutes-</option>
                 <option>00</option>
                 <option>05</option>
                 <option>10</option>
@@ -152,6 +152,9 @@ class Send extends Component{
                 <option>50</option>
                 <option>55</option>
             </select>
+                                </div>
+
+
         </div>
         <button onClick={this.handleSubmit}>Submit</button>
         </div>
