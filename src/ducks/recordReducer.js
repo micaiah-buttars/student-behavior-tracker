@@ -14,14 +14,7 @@ const initialState = {
         }
     ],
     times: [
-        {
-        time_slot_id: 0,
-        time_value: ''
-    },
-        {
-        time_slot_id: 0,
-        time_value: ''
-    }
+         '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''
 ]
 
 
@@ -60,23 +53,26 @@ export const handleLogUpdate = (obj) => {
 export default function(state = initialState, action){
     switch(action.type){
         case REQUEST_LOGS + '_FULFILLED':
+            console.log(state.times.length)
             return {...state, logs: action.payload}
         case REQUEST_TIMES + '_FULFILLED':
-        return {...state, times: action.payload}
+            return {...state, times: action.payload}
         case HANDLE_LOG_UPDATE:
-        const {name, value, log_id} = action.payload
-        const logs = [...state.logs]
+            const {name, value, log_id} = action.payload
+            const logs = [...state.logs]
 
-        const found = logs.find(log => log.log_id === + log_id)
-        const index = state.findIndex(log => log.log_id === + log_id)
+            const found = logs.find(log => log.log_id === + log_id)
+            const index = state.findIndex(log => log.log_id === + log_id)
 
-        const updated = {
-                ...found,
-                [name]: value || ''
-            }
-        logs.splice(index, 1, updated)
+            const updated = {
+                    ...found,
+                    [name]: value || ''
+                }
+            logs.splice(index, 1, updated)
 
-            return {...state, ...logs}
+                return {...state, ...logs}
+        // case SYNC_LOGS:
+        // return {...state, logs: action.payload}
         default:
             return state
     }

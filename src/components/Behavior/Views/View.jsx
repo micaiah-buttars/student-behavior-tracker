@@ -30,6 +30,7 @@ class View extends Component{
         this.props.requestStudent(id)
         this.props.requestLogs({id, date})
         this.props.requestTimes()
+
         
     }
 
@@ -106,7 +107,9 @@ class View extends Component{
                 }
             }
         }
+        
         noEntryGenerator(logs)
+
 
         const reducer = (arr) => {
             let total = 0
@@ -199,7 +202,7 @@ class View extends Component{
 
         const editor = logs.map((log, i) => {
             return <div key={i}>
-                <span>{log.time_value}</span>
+                <span>{times[i].time_value}</span>
                 <select>
                     <option default hidden>--Select--</option>
                     {this.props.student.behaviors.map((behavior, i) => {
