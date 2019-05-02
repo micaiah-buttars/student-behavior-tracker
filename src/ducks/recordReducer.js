@@ -2,28 +2,50 @@
 
 import axios from 'axios'
 
-const initialState = [
-{    log_id: 0,
-    student_id: 0,
-    behavior_id: 0,
-    behavior_type_id: 0,
-    time_slot_id: 0,
-    log_comment: '',
-    log_date: ''
-}
-
+const initialState = {
+    logs: [
+        {    log_id: 0,
+            student_id: 0,
+            behavior_id: 0,
+            behavior_type_id: 0,
+            time_slot_id: 0,
+            log_comment: '',
+            log_date: ''
+        }
+    ],
+    times: [
+        {
+        time_slot_id: 0,
+        time_value: ''
+    },
+        {
+        time_slot_id: 0,
+        time_value: ''
+    }
 ]
 
 
+}
+
+
 const REQUEST_LOGS = 'REQUEST_LOGS'
+const REQUEST_TIMES = 'REQUEST_TIMES'
 const HANDLE_LOG_UPDATE = 'HANDLE_LOG_UPDATE'
+
+
 
 export const requestLogs = (params) => {
     const {id, date} = params
-    console.log('PARAMS', params)
     let data = axios.get(`/log/${id}/view/${date}`).then(res => res.data)
         return {
             type: REQUEST_LOGS,
+            payload: data
+        }
+}
+export const requestTimes = () => {
+    let data = axios.get('/times').then(res => res.data)
+        return {
+            type: REQUEST_TIMES,
             payload: data
         }
 }
@@ -38,12 +60,14 @@ export const handleLogUpdate = (obj) => {
 export default function(state = initialState, action){
     switch(action.type){
         case REQUEST_LOGS + '_FULFILLED':
-            return action.payload
+            return {...state, logs: action.payload}
+        case REQUEST_TIMES + '_FULFILLED':
+        return {...state, times: action.payload}
         case HANDLE_LOG_UPDATE:
         const {name, value, log_id} = action.payload
-        const logs = [...state]
+        const logs = [...state.logs]
 
-        const found = state.find(log => log.log_id === + log_id)
+        const found = logs.find(log => log.log_id === + log_id)
         const index = state.findIndex(log => log.log_id === + log_id)
 
         const updated = {

@@ -4,7 +4,6 @@ import {requestStudent} from '../../../ducks/studentReducer'
 import {handleLogChange, submitLog} from '../../../ducks/behaviorReducer'
 
 
-
 class Send extends Component{
     constructor(props){
         super(props)

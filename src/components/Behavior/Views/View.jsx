@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {requestStudent} from '../../../ducks/studentReducer'
-import {requestLogs} from '../../../ducks/recordReducer'
+import {requestLogs, requestTimes} from '../../../ducks/recordReducer'
 import {Doughnut} from 'react-chartjs-2'
 import {Line} from 'react-chartjs-2'
 
@@ -15,18 +15,21 @@ class View extends Component{
         this.state = {
             date: moment(),
             editing: false,
-            selectedHour: '10'
+            selectedHour: moment().format('h')
+            
+        
 
         }
     }
 
     componentDidMount(){
-
+        
         const id = this.props.match.params.id
         const date = this.state.date.format().slice(0, 10)
-
+        
         this.props.requestStudent(id)
         this.props.requestLogs({id, date})
+        this.props.requestTimes()
         
     }
 
@@ -55,7 +58,6 @@ class View extends Component{
     }
     handleOptionChange = (e) => {
         const {value} = e.target
-        console.log('hit')
         this.setState({
             selectedHour: value
         })
@@ -69,10 +71,10 @@ class View extends Component{
 
 
     render(){
-        const date = this.state.date.format().slice(0, 10)
         console.log(this.props)
         
-        let logs = [...this.props.logs]
+        let logs = [...this.props.logs.logs]
+        let times = [...this.props.logs.times]
 
         let onTask = logs.filter(function(log){
             return log.behavior_type_id === 1
@@ -95,7 +97,7 @@ class View extends Component{
                         student_id: this.props.match.params.id,
                         behavior_id: null,
                         behavior_type_id: null,
-                        time_slot_id: (i + 1),
+                        time_slot_id: `${i + 1}`,
                         log_comment: null
                     })
                     noEntry.push('')
@@ -194,34 +196,10 @@ class View extends Component{
         
 
 
-        const dailyBarcode = logs.sort((a, b) => parseFloat(a.time_slot_id) - parseFloat(b.time_slot_id)).map((log, i) => {
-            switch(log.behavior_type_id){
-                case 1:
-                    return <div 
-                        className='barcodeOnTask'
-                        key={i}
-                        >'</div>
-                case 2:
-                    return <div
-                        className='barcodeTarget'
-                        key={i}
-                        >'</div>
-                case 3:
-                    return <div
-                        className='barcodeReplacement'
-                        key={i}
-                        >'</div>
-                default:
-                    return <div
-                        className='barcodeNoEntry'
-                        key={i}
-                        >'</div>
-            }   
-        })
 
         const editor = logs.map((log, i) => {
             return <div key={i}>
-                <span>{log.time_slot_id}</span>
+                <span>{log.time_value}</span>
                 <select>
                     <option default hidden>--Select--</option>
                     {this.props.student.behaviors.map((behavior, i) => {
@@ -297,9 +275,6 @@ class View extends Component{
         </div>
 
 
-        
-
-
         return (
         <div>
             <div className='dateContainer'>
@@ -345,27 +320,6 @@ class View extends Component{
                 </div>
             
             }
-
-
-
-
-
-
-    
-        
-
-
-
-        
-
-
-
-
-
-
-
-
-
         </div>
 
 
@@ -376,4 +330,4 @@ class View extends Component{
 const mapState = (reduxState) => {
     return reduxState
 }
-export default connect(mapState, {requestStudent, requestLogs})(View)
+export default connect(mapState, {requestStudent, requestLogs, requestTimes})(View)
