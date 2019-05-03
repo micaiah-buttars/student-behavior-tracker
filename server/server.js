@@ -1,8 +1,9 @@
 require('dotenv').config()
 const express = require('express')
-// const session = require('express-session')
+const session = require('express-session')
 const massive = require('massive')
 const controller = require('./controllers/controller')
+const auth = require('./controllers/auth')
 
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
@@ -19,17 +20,14 @@ massive(CONNECTION_STRING)
 
 })
 
-// app.use(session({
-//     secret: SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: false
-// }))
+app.use(session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}))
 
-// app.post('/login')
-
-
-
-app.get('/login')
+app.post('/auth/register', auth.register)
+app.post('/auth/login', auth.login)
 
 // Dashboard will retrieve all students and map them
 app.get('/students', controller.requestAllStudents)

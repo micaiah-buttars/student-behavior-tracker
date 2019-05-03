@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {requestStudent} from '../../../ducks/studentReducer'
 import {requestLogs, requestTimes} from '../../../ducks/recordReducer'
-import {Doughnut} from 'react-chartjs-2'
+import {Doughnut, Bar} from 'react-chartjs-2'
 import {Line} from 'react-chartjs-2'
 
 
@@ -112,15 +112,16 @@ class View extends Component{
 
 
         const reducer = (arr) => {
-            let total = 0
+            let target = 0
+            let replacement = 0
             arr.forEach((log) => {
                 if(log.behavior_type_id === 2){
-                    total--
+                    target--
                 } else if(log.behavior_type_id === 3){
-                    total++
+                    replacement++
                 } else {}
             })
-            return total
+            return {target, replacement}
         }
 
         const nine = reducer(logs.filter(function(log){
@@ -145,33 +146,36 @@ class View extends Component{
             return log.time_slot_id >= 70
         }))
         
-        const lineData = {
+        const barData = {
             labels: ['9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM'],
             datasets: [
                 {
-                    label: 'Avg. Behavior per Hour',
-                    fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [nine, ten, eleven, twelve, one, two, three]
+                    label: 'Target',
+                    backgroundColor: '#E76B74',
+                    borderColor: '#E76B74',
+                    data: [nine.target, ten.target, eleven.target, twelve.target, one.target, two.target, three.target]
+                },
+                {
+                    label: 'Replacement',
+                    backgroundColor: '#C3DD3E',
+                    borderColor: '#C3DD3E',
+                    data: [nine.replacement, ten.replacement, eleven.replacement, twelve.replacement, one.replacement, two.replacement, three.replacement]
 
                 }
             ]
         }
+        const barOptions = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        suggestedMin: -10,
+                        suggestedMax: 10
+                    }
+                }]
+            }
+        }
+
+        
         
         const doughnutData = {
             labels: [
@@ -202,7 +206,7 @@ class View extends Component{
 
         const editor = logs.map((log, i) => {
             return <div key={i}>
-                <span>{times[i].time_value}</span>
+                {/* <span>{times[i].time_value}</span> */}
                 <select>
                     <option default hidden>--Select--</option>
                     {this.props.student.behaviors.map((behavior, i) => {
@@ -224,40 +228,42 @@ class View extends Component{
         })
 
         const radioButtons = 
-        <div className='radioButtons'>
+        <div
+            className='radioButtons'
+            onChange={this.handleOptionChange}>
 
             <label>
             <input type='radio' value='9'
             checked={this.state.selectedHour === '9'}
-            onChange={this.handleOptionChange}/>
+            />
             <span>9 AM</span>
             </label>
 
             <label>
             <input type='radio' value='10'
             checked={this.state.selectedHour === '10'}
-            onChange={this.handleOptionChange}/>
+            />
             <span>10 AM</span>
             </label>
 
             <label>
             <input type='radio' value='11'
             checked={this.state.selectedHour === '11'}
-            onChange={this.handleOptionChange}/>
+            />
             <span>11 AM</span>
             </label>
 
             <label>
             <input type='radio' value='12'
             checked={this.state.selectedHour === '12'}
-            onChange={this.handleOptionChange}/>
+            />
             <span>12 PM</span>
             </label>
             
             <label>
             <input type='radio' value='1'
             checked={this.state.selectedHour === '1'}
-            onChange={this.handleOptionChange}/>
+            />
             <span>1 PM</span>
             </label>
 
@@ -265,14 +271,14 @@ class View extends Component{
             <label>
             <input type='radio' value='2'
             checked={this.state.selectedHour === '2'}
-            onChange={this.handleOptionChange}/>
+            />
             <span>2 PM</span>
             </label>
 
             <label>
             <input type='radio' value='3'
             checked={this.state.selectedHour === '3'}
-            onChange={this.handleOptionChange}/>
+            />
             <span>3 PM</span>
             </label>
         </div>
@@ -291,7 +297,10 @@ class View extends Component{
 
             {!this.state.editing
                 ? <div>
-                <Line data={lineData}/>
+                <Bar
+                    data={barData}
+                    options={barOptions}
+                />
                     <br/>
                     <br/>
                 <Doughnut data={doughnutData}/>
