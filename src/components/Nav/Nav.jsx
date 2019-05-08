@@ -18,6 +18,9 @@ export default class Nav extends Component {
         {this.props.buttonAction ? <button onClick={this.props.buttonAction}>{this.props.buttonLabel}</button>
         
       : <div></div>}
+        {this.props.delete ? <button onClick={this.props.delete}>Delete Student</button>
+        
+      : <div></div>}
 
 
             

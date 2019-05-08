@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Route} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {requestStudent, handleChange, updateBehavior, saveChanges} from '../../ducks/studentReducer'
+import {requestStudent, handleChange, updateBehavior, saveChanges, deleteStudent} from '../../ducks/studentReducer'
 
 import Nav from '../Nav/Nav'
 import './Editor.css'
@@ -27,11 +27,14 @@ class Editor extends Component {
             reminder_interval,
             behaviors
         }
+
+        console.log(student)
         return (
             <div>
                 <Nav 
                     backLink={'/settings'}
                     pageTitle={student_name}
+                    delete={() => this.props.deleteStudent(student)}
                     buttonAction={() => this.props.saveChanges(student)}
                     buttonLabel='SAVE'/>
             
@@ -66,5 +69,5 @@ class Editor extends Component {
 const mapState = (reduxState) => {
     return reduxState
 }
-export default connect(mapState, {requestStudent, handleChange, updateBehavior, saveChanges})(Editor)
+export default connect(mapState, {requestStudent, handleChange, updateBehavior, saveChanges, deleteStudent})(Editor)
 

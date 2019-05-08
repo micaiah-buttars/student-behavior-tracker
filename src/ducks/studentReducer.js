@@ -17,6 +17,7 @@ const REQUEST_STUDENT = 'REQUEST_STUDENT'
 const UPDATE_BEHAVIOR = 'UPDATE_BEHAVIOR'
 const HANDLE_CHANGE = 'HANDLE_CHANGE'
 const SAVE_CHANGES = 'SAVE_CHANGES'
+const DELETE_STUDENT = 'DELETE_STUDENT'
 const DESYNC = 'DESYNC'
 
 export const requestStudent = (id) => {
@@ -52,6 +53,13 @@ export const saveChanges = (student) => {
         payload: {}
     }
 }
+export const deleteStudent = (student) => {
+    axios.delete(`/editor/${student.student_id}`)
+    return {
+        type: DELETE_STUDENT,
+        payload: {}
+    }
+}
 
 export const desync = () => {
     return {
@@ -81,6 +89,8 @@ export default function(state = initialState, action){
         case HANDLE_CHANGE:
             return {...state, ...action.payload}
         case SAVE_CHANGES + '_FULFILLED':
+            return {...state, ...initialState}
+        case DELETE_STUDENT + '_FULFILLED':
             return {...state, ...initialState}
         case DESYNC:
             return {...initialState}

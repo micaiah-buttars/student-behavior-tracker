@@ -36,7 +36,7 @@ module.exports = {
         res.status(200).send([student])
     
     },
-    saveChanges: async (req,res) => {
+    saveChanges: async (req, res) => {
         const db = req.app.get('db')
         const {student_id, student_name, reminder_interval, behaviors} = req.body
 
@@ -47,6 +47,15 @@ module.exports = {
 
             db.update_behavior([behavior_name, behavior_desc, behavior_id])
         })
+    },
+    deleteStudent: async (req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+
+        console.log(id)
+
+        db.delete_student(id)
+        res.status(200).send('Deleted')
     },
 
     submitLog: async (req, res) => {

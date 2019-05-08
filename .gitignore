@@ -13,6 +13,7 @@
 /src/components/Behavior/Views/DailyBarcode.jsx
 
 # misc
+.env.prod
 .env
 .DS_Store
 .env.local
