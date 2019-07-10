@@ -3,11 +3,13 @@ insert into student_log (
     behavior_id,
     behavior_type_id,
     time_slot_id,
-    log_comment
+    log_comment,
+    log_date
 ) values (
     $1,
     $2,
     $3,
     $4,
-    $5
+    $5,
+    now()
 )
